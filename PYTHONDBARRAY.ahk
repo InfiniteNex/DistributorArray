@@ -5,7 +5,7 @@
 ; Base variables===============================================================================
 {
 varCode1 := 
-varCode2 := 123
+varCode2 := 
 varDistributorLong := 
 varDistributorShort := 
 varCountry := 
@@ -80,18 +80,18 @@ return
 
 
 ; get row data from python and split it in an array
-
 ; Update based on new data==============================================================
 {
 Update:
 Run, DistArray.pyw,,, NewPID
-Process, WaitClose, %NewPID%
+Process, WaitClose, %NewPID% ; wait for the python script to finish
 Clipboard := Trim(Clipboard, " `t`r`n")
 
 1Array := StrSplit(Clipboard, ",", "'" "[" "]" "'")
 
 varCode1 := 1Array[1]
 varCode2 := 1Array[2]
+StringTrimLeft, varCode2, varCode2, 1
 varDistributorLong := 1Array[3]
 StringTrimLeft, varDistributorLong, varDistributorLong, 2
 varDistributorShort := 1Array[4]
